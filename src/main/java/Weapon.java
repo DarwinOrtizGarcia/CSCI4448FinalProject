@@ -2,7 +2,7 @@ public class Weapon extends Item {
     private String weaponName;
     private int might;
     private int range;
-
+    private final boolean isWeapon = true;
 
     public Weapon() {
         this.weaponName = "UNARMED";

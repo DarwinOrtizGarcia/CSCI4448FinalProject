@@ -16,9 +16,12 @@ public class PurchaseItem {
         System.out.println("Purchased " + item.getItemName());
 
         if (item.isWeapon()) {
-            unit.setUnitWeapon(item.getItemName());
+            unit.setUnitWeapon((Weapon) item);
 
             System.out.println(unit.getName() + " equipped " + item.getItemName());
+        }
+        else{
+            unit.setUnitItem(item);
         }
 
         return gold;

@@ -6,7 +6,8 @@ public class AlliedUnit {
     private int defense;
     private int resistance;
     private int movement;
-    private String equippedWeapon;
+    private Weapon equippedWeapon;
+    private Item heldItem;
 
     public AlliedUnit() {
         name = "DEFAULT";
@@ -16,7 +17,8 @@ public class AlliedUnit {
         defense = 50;
         resistance = 50;
         movement = 2;
-        equippedWeapon = "";
+        equippedWeapon = null;
+        this.heldItem = null;
     }
 
     public AlliedUnit(String name, int hp, int strength, int magic, int defense, int resistance, int movement) {
@@ -27,16 +29,19 @@ public class AlliedUnit {
         this.defense = defense;
         this.resistance = resistance;
         this.movement = movement;
-        this.equippedWeapon = "";
+        this.equippedWeapon = null;
+        this.heldItem = null;
     }
 
     public String getName() {
         return name;
     }
 
-    public String getUnitWeapon() {
+    public Weapon getUnitWeapon() {
         return equippedWeapon;
     }
+
+    public Item getUnitItem() {return heldItem;}
 
     public int getHP() {
         return hp;
@@ -66,8 +71,12 @@ public class AlliedUnit {
         this.name = name;
     }
 
-    public void setUnitWeapon(String newWeapon) {
+    public void setUnitWeapon(Weapon newWeapon) {
         equippedWeapon = newWeapon;
+    }
+
+    public  void setUnitItem(Item newItem) {
+        heldItem = newItem;
     }
 
     public void setHP(int hp) {
