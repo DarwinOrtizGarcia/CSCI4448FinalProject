@@ -1,4 +1,8 @@
-import com.character.Allied;
+package game.shop;
+
+import game.Item;
+import game.Weapon;
+
 public class PurchaseItem {
 
     public int buy(int gold, Item item, Allied unit) {

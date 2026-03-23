@@ -1,4 +1,4 @@
-package com.character;
+package game;
 
 public class Weapon extends Item {
     private String weaponName;

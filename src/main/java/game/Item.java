@@ -1,4 +1,4 @@
-package com.character;
+package game;
 
 public class Item {
     private String itemName;

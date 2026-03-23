@@ -1,4 +1,9 @@
-import com.character.Allied;
+package game.shop;
+
+import game.Item;
+import game.units.Allied;
+
+import java.util.List;
 
 public class ShopFacade {
 
@@ -10,7 +15,7 @@ public class ShopFacade {
         this.purchaseItem = new PurchaseItem();
     }
 
-    public int enterShop(int gold, Item[] items, Allied units) {
+    public int enterShop(int gold, List<Item> items, Allied units) {
 
         boolean running = true;
 
@@ -20,16 +25,16 @@ public class ShopFacade {
 
             switch (option) {
                 case 1:
-                    gold = purchaseItem.buy(gold, items[0], units);
+                    gold = purchaseItem.buy(gold, items.get(0), units);
                     break;
                 case 2:
-                    gold = purchaseItem.buy(gold, items[1], units);
+                    gold = purchaseItem.buy(gold, items.get(1), units);
                     break;
                 case 3:
-                    gold = purchaseItem.buy(gold, items[2], units);
+                    gold = purchaseItem.buy(gold, items.get(2), units);
                     break;
                 case 4:
-                    gold = purchaseItem.buy(gold, items[3], units);
+                    gold = purchaseItem.buy(gold, items.get(3), units);
                     break;
                 case 5:
                     running = false;

@@ -1,3 +1,5 @@
+package game.shop;
+
 import java.util.Scanner;
 
 public class ShopUI {
