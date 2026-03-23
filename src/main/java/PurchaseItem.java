@@ -1,6 +1,7 @@
+import com.character.Allied;
 public class PurchaseItem {
 
-    public int buy(int gold, Item item, AlliedUnit unit) {
+    public int buy(int gold, Item item, Allied unit) {
 
         if (item == null) {
             System.out.println("Item unavailable.");

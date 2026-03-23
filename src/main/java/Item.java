@@ -1,3 +1,5 @@
+package com.character;
+
 public class Item {
     private String itemName;
     private int healing;

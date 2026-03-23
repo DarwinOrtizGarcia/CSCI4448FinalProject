@@ -1,3 +1,5 @@
+import com.character.Allied;
+
 public class ShopFacade {
 
     private ShopUI ui;
@@ -8,7 +10,7 @@ public class ShopFacade {
         this.purchaseItem = new PurchaseItem();
     }
 
-    public int enterShop(int gold, Item[] items, AlliedUnit units) {
+    public int enterShop(int gold, Item[] items, Allied units) {
 
         boolean running = true;
 

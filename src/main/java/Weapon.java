@@ -1,3 +1,5 @@
+package com.character;
+
 public class Weapon extends Item {
     private String weaponName;
     private int might;
