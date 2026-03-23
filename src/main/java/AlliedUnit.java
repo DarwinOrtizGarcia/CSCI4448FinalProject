@@ -27,7 +27,7 @@ public class AlliedUnit {
         this.defense = defense;
         this.resistance = resistance;
         this.movement = movement;
-        equippedWeapon = "";
+        this.equippedWeapon = "";
     }
 
     public String getName() {
