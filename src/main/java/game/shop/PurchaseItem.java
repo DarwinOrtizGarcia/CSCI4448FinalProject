@@ -2,6 +2,7 @@ package game.shop;
 
 import game.Item;
 import game.Weapon;
+import game.units.Allied;
 
 public class PurchaseItem {
 
