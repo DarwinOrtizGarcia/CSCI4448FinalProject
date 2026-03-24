@@ -1,4 +1,6 @@
 package game.units;
+import game.Weapon;
+import game.Item;
 
 public class Allied extends Character {
     private static final Double DEFAULT_INITIAL_HEALTH = 50.0;

@@ -12,7 +12,7 @@ public class ShopTest {
 
     @Test
     void testRoll() {
-        Allied joe = alliedUnitFactory.createAlly("joe")
+        Allied joe = alliedUnitFactory.createAlly("joe");
         ShopFacade shopFacade = new ShopFacade();
         List<Item> items = new ArrayList<>();
         items.add(new Item("Steel Bow"));
