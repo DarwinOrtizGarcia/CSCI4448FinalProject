@@ -5,6 +5,13 @@ import java.util.Scanner;
 public class ShopUI {
     private Scanner scanner = new Scanner(System.in);
 
+    public ShopUI() {
+        this.scanner = new Scanner(System.in);
+    }
+
+    public ShopUI(Scanner scanner) {
+        this.scanner = scanner;
+    }
     public void displayMenu(int gold) {
         System.out.println("--------------------------------------------------");
         System.out.println("Gold: " + gold);

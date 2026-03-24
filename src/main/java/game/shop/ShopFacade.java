@@ -10,8 +10,8 @@ public class ShopFacade {
     private ShopUI ui;
     private PurchaseItem purchaseItem;
 
-    public ShopFacade() {
-        this.ui = new ShopUI();
+    public ShopFacade(ShopUI ui) {
+        this.ui = ui;
         this.purchaseItem = new PurchaseItem();
     }
 
