@@ -30,6 +30,9 @@ public class Map {
         this.enemy2Pos = builder.enemy2Pos;
         this.enemy3Pos = builder.enemy3Pos;
     }
+    public static Builder getNewBuilder() {
+        return new Builder();
+    }
 
     public static class Builder {
         private int numRows = 8;
@@ -41,6 +44,7 @@ public class Map {
         private int[] enemy1Pos = new int[]{7, 2};
         private int[] enemy2Pos = new int[]{4, 6};
         private int[] enemy3Pos = new int[]{5, 11};
+
 
         public Builder setDimensions(int rows, int cols) {
             this.numRows = rows;
