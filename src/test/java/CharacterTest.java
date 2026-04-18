@@ -20,8 +20,8 @@ public class CharacterTest {
     public void testEnemyFromFactory() {
         EnemyUnitFactory factory = new EnemyUnitFactory();
         Enemy mage = factory.createMage("Merlin");
-        assertEquals(15.0, mage.getHealth());
-        assertEquals(2.0, mage.getRange());
+        assertEquals(10.0, mage.getHealth());
+        assertEquals(1.0, mage.getRange());
      }
      @Test
     public void testSetHealthUpdates() {

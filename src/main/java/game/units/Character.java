@@ -1,4 +1,10 @@
 package game.units;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import game.Map;
+
 public class Character {
     private String name;
     private Double health;
@@ -6,14 +12,21 @@ public class Character {
     private Double magic;
     private Double defense;
     private Double resistance;
+    private int[] position = new int[2];
+    private int movement;
 
-    public Character(String name, Double health, Double strength, Double magic, Double defense, Double resistance) {
+    public Character(String name, Double health, Double strength, Double magic, Double defense, Double resistance, int movement, int[] position) {
         this.name = name;
         this.health = health;
         this.strength = strength;
         this.magic = magic;
         this.defense = defense;
         this.resistance = resistance;
+        this.movement = movement;
+        this.position = position;
+    }
+
+    public Character(Character character) {
     }
 
     public String getName() {
@@ -21,6 +34,12 @@ public class Character {
     }
     public void setName(String name) {
         this.name = name;
+    }
+    public void setPosition(int[] newPosition){
+        this.position = newPosition;
+    }
+    public int[] getPosition(){
+        return this.position;
     }
     public Double getHealth() {
         return health;
@@ -51,6 +70,57 @@ public class Character {
     }
     public void setResistance(Double resistance) {
         this.resistance = resistance;
+    }
+    public int getMovement() {
+        return movement;
+    }
+    public void setMovement(int movement) {
+        this.movement = movement;
+    }
+
+    public void MoveOnMap(Map gamemap)
+    {
+        int rows = getPosition()[0];
+        int columns = getPosition()[1];
+        List<int[]> possibleCoordinates = new ArrayList<int[]>();
+        for(int possibleXMovement = -movement; possibleXMovement < movement; possibleXMovement++)
+        {
+            for(int possibleYMovement = -movement; possibleYMovement < movement; possibleYMovement++)
+            {
+                int totalMovementCost = Math.abs(possibleXMovement) + Math.abs(possibleYMovement);
+                if(totalMovementCost > movement || possibleXMovement == 0 && possibleYMovement == 0)
+                {
+                    continue;
+                }
+                int newRow = rows + possibleXMovement;
+                int newColumn = columns + possibleYMovement;
+                int[] newPosition = new int[]{newRow,newColumn};
+                if(isCoordinateFree(newRow,newColumn, gamemap))
+                {
+                    possibleCoordinates.add(newPosition);
+                }
+            }
+        }
+        if(!possibleCoordinates.isEmpty()){
+            Random rand = new Random();
+            int[] newPosition = possibleCoordinates.get(rand.nextInt(possibleCoordinates.size()));
+            this.setPosition(newPosition);
+        }
+    }
+    private boolean isCoordinateFree(int row, int column, Map gamemap)
+    {
+        if (row < 0 || row >= gamemap.getNumRows())
+        {
+            return false;
+        }
+        else if (column < 0 || row >= gamemap.getNumColumns())
+        {
+            return false;
+        }
+        else if (gamemap.isPositionOccupiedByEnemy(row, column)) {
+            return false;
+        }
+        else return !gamemap.isPositionOccupiedByAlly(row, column);
     }
 
 }
