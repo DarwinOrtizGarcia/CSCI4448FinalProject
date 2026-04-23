@@ -2,6 +2,8 @@ package game.shop;
 
 import game.Item;
 import game.units.Allied;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
@@ -9,6 +11,7 @@ public class ShopFacade {
 
     private ShopUI ui;
     private PurchaseItem purchaseItem;
+    private static final Logger logger = LoggerFactory.getLogger(ShopFacade.class);
 
     public ShopFacade(ShopUI ui) {
         this.ui = ui;
@@ -40,7 +43,7 @@ public class ShopFacade {
                     running = false;
                     break;
                 default:
-                    System.out.println("Invalid option.");
+                    logger.info("Invalid option.");
             }
         }
 

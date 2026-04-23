@@ -3,11 +3,14 @@ package game;
 import game.units.Allied;
 import game.units.Enemy;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class Map {
+    private static final Logger logger = LoggerFactory.getLogger(Map.class);
     private int numRows;
     private int numCols;
     private char[][] mapData;
@@ -84,10 +87,32 @@ public class Map {
     }
 
     public void displayMap() {
-        for (int i = 0; i < numRows; i++) {
-            for (int j = 0; j < numCols; j++) {
+        logger.info(" ***************** MAP *****************");
 
-                char toPrint = '-'; // default
+        String columnCoordinates = "  |";
+        for (int j = 0; j < numCols; j++) {
+            if(j < 10) {
+                columnCoordinates += " " + j + " |";
+            }
+            else {//This is to keep the grid lined up when an extra digit comes in, just removes a white space.
+                columnCoordinates += " " + j + "|";
+            }
+        }
+        logger.info(columnCoordinates);
+
+        String horizontalBorder = "  +";
+        for (int j = 0; j < numCols; j++) {
+            horizontalBorder += "---+";
+        }
+
+        int currentRow = 0;
+
+        for (int i = 0; i < numRows; i++) {
+            StringBuilder row = new StringBuilder(String.valueOf(currentRow));
+            row.append(" |");
+
+            for (int j = 0; j < numCols; j++) {
+                char toPrint = ' ';
 
                 for (Allied ally : allyUnits) {
                     if (ally.getPosition()[0] == i && ally.getPosition()[1] == j) {
@@ -96,7 +121,7 @@ public class Map {
                     }
                 }
 
-                if (toPrint == '-') {
+                if (toPrint == ' ') {
                     for (Enemy enemy : enemyUnits) {
                         if (enemy.getPosition()[0] == i && enemy.getPosition()[1] == j) {
                             toPrint = Character.toUpperCase(enemy.getName().charAt(0));
@@ -105,10 +130,16 @@ public class Map {
                     }
                 }
 
-                System.out.print(toPrint);
+                row.append(" ").append(toPrint).append(" |");
+
             }
-            System.out.println();
+            currentRow++;
+            logger.info(horizontalBorder);
+            logger.info(String.valueOf(row));
         }
+
+
+        logger.info(horizontalBorder);
     }
 
 }
