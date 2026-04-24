@@ -29,7 +29,7 @@ public class Weapon extends Item {
     }
 
     // Setter for Weapon Name (includes logic to set stats based on name)
-    public void setWeapon(String weaponNamepnName) {
+    public void setWeapon(String weaponName) {
         this.weaponName = weaponName;
 
         switch (weaponName) {

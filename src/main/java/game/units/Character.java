@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import game.Map;
+import game.Strategy.AttackStrategy;
 
 public class Character {
     private String name;
@@ -14,8 +15,9 @@ public class Character {
     private Double resistance;
     private int[] position = new int[2];
     private int movement;
+    private AttackStrategy strategy;
 
-    public Character(String name, Double health, Double strength, Double magic, Double defense, Double resistance, int movement, int[] position) {
+    public Character(String name, Double health, Double strength, Double magic, Double defense, Double resistance, int movement, int[] position, AttackStrategy strategy) {
         this.name = name;
         this.health = health;
         this.strength = strength;
@@ -24,6 +26,7 @@ public class Character {
         this.resistance = resistance;
         this.movement = movement;
         this.position = position;
+        this.strategy = strategy;
     }
 
     public Character(Character character) {
@@ -71,13 +74,18 @@ public class Character {
     public void setResistance(Double resistance) {
         this.resistance = resistance;
     }
+    public AttackStrategy getStrategy() {
+        return strategy;
+    }
+    public void setStrategy(AttackStrategy strategy) {
+        this.strategy = strategy;
+    }
     public int getMovement() {
         return movement;
     }
     public void setMovement(int movement) {
         this.movement = movement;
     }
-
     public void MoveOnMap(Map gamemap)
     {
         int rows = getPosition()[0];
@@ -122,5 +130,4 @@ public class Character {
         }
         else return !gamemap.isPositionOccupiedByAlly(row, column);
     }
-
 }
