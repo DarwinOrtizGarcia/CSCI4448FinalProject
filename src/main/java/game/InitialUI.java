@@ -46,19 +46,24 @@ public class InitialUI {
     }
 
     private void startNewGame() {
-        logger.info("\n--- New Game ---");
+        logger.info("--- New Game ---");
         logger.info("1. Create Character");
         logger.info("2. Use Premade Character");
         logger.info("Choose: ");
 
+        boolean validChoice = false;
         int choice = getUserChoice();
 
-        if (choice == 1) {
-            createCharacter();
-        } else if (choice == 2) {
-            usePremadeCharacter();
-        } else {
-            logger.info("Invalid choice.");
+        while(!validChoice) {
+            if (choice == 1) {
+                createCharacter();
+                validChoice = true;
+            } else if (choice == 2) {
+                usePremadeCharacter();
+                validChoice = true;
+            } else {
+                logger.info("Invalid choice.");
+            }
         }
     }
 
