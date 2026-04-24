@@ -80,10 +80,11 @@ public class InitialUI {
         int numberOfRows = size[0];
         int numberOfColumns = size[1];
         int difficulty = chooseDifficulty();
+        int defaultNumEnemies = numberOfRows/2;
 
         openShop(mainCharacter);
 
-        List<Enemy> enemies = enemyUnitFactory.createRandomEnemies(difficulty);
+        List<Enemy> enemies = enemyUnitFactory.createRandomEnemies(difficulty+defaultNumEnemies);
 
         Map map = Map.getNewBuilder()
                 .setDimensions(numberOfRows, numberOfColumns)
@@ -99,20 +100,65 @@ public class InitialUI {
         AlliedUnitFactory alliedUnitFactory = new AlliedUnitFactory();
         logger.info("Name your character: ");
         String name = scanner.nextLine();
-        logger.info("Name your character: ");
-        return alliedUnitFactory.createAlly(name);
+        logger.info("Choose your class: ");
+        logger.info("1. Fighter: Well rounded melee unit.");
+        logger.info("2. Tank: Slower movement, but tougher against physical attacks");
+        logger.info("3. Archer: Weaker and squishier than the melee classes, but can attack at range.");
+        logger.info("4. Mage: Very squishy, but deals damage that is extra effective against armored enemies at range.");
+        int choice = getUserChoice();
+
+        switch (choice) {
+            case 1:
+                return alliedUnitFactory.createFighterAlly(name);
+                break;
+            case 2:
+                return alliedUnitFactory.createToughAlly(name);
+                break;
+            case 3:
+                return alliedUnitFactory.createArcherAlly(name);
+                break;
+            case 4:
+                return alliedUnitFactory.createMageAlly(name);
+                break;
+            default:
+                logger.info("Invalid choice. Try again.");
+        }
 
     }
 
     private Allied usePremadeCharacter() {
+        AlliedUnitFactory alliedUnitFactory = new AlliedUnitFactory();
 
+        logger.info("Choose your character: ");
+        logger.info("1. Alvin (Fighter): Well rounded melee unit, he can both deal and take solid damage.");
+        logger.info("2. Kisara (Tank): Slower movement, but she is tougher against physical attacks.");
+        logger.info("3. Raven (Archer): Weaker and squishier than the melee classes, but he can attack at range.");
+        logger.info("4. Pascal (Mage): Very squishy, but she deals damage that is extra effective against armored enemies at range.");
+        int choice = getUserChoice();
+
+        switch (choice) {
+            case 1:
+                return alliedUnitFactory.createFighterAlly("Alvin");
+                break;
+            case 2:
+                return alliedUnitFactory.createToughAlly("Kisara");
+                break;
+            case 3:
+                return alliedUnitFactory.createArcherAlly("Raven");
+                break;
+            case 4:
+                return alliedUnitFactory.createMageAlly("Pascal");
+                break;
+            default:
+                logger.info("Invalid choice. Try again.");
+        }
     }
 
     private int[] chooseMapSize() {
         logger.info("Choose map size:");
         logger.info("1. Small (4x4 grid)");
         logger.info("2. Medium (6x6 grid)");
-        logger.info("3. Large (9x9 grid)");
+        logger.info("3. Large (8x8 grid)");
         logger.info("Enter choice: ");
 
         int choice = getUserChoice();
@@ -121,7 +167,7 @@ public class InitialUI {
         return switch (choice) {
             case 1 -> new int[]{4, 4};
             case 2 -> new int[]{6, 6};
-            case 3 -> new int[]{9, 9};
+            case 3 -> new int[]{8, 8};
             default -> {
                 logger.info("Invalid choice. Defaulting to Small.");
                 yield new int[]{4, 4};
@@ -131,7 +177,7 @@ public class InitialUI {
 
     private int chooseDifficulty() {
         logger.info("Choose your difficulty:");
-        logger.info("1. Chill (default enemies only, 1 on small map, 2 on medium, 3 on large)");
+        logger.info("1. Chill (default enemies only, 2 on small map, 3 on medium, 4 on large)");
         logger.info("2. Challenge (1 extra enemy)");
         logger.info("3. Lunatic (2 extra enemies)");
         logger.info("Enter choice: ");
@@ -155,8 +201,7 @@ public class InitialUI {
         ShopUI shopUI = new ShopUI();
         ShopFacade shop = new ShopFacade(shopUI);
         int startingGold = 1000;
-        List<Item> defaultItems = new ArrayList<>();
-        shop.enterShop(startingGold, defaultItems, unit);
+        shop.enterShop(startingGold, unit);
     }
 
     private void exitGame() {

@@ -1,6 +1,7 @@
 package game.shop;
 
 import game.Item;
+import game.Weapon;
 import game.units.Allied;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,16 +12,25 @@ public class ShopFacade {
 
     private ShopUI ui;
     private PurchaseItem purchaseItem;
+    private PurchaseWeapon purchaseWeapon;
     private static final Logger logger = LoggerFactory.getLogger(ShopFacade.class);
 
     public ShopFacade(ShopUI ui) {
         this.ui = ui;
         this.purchaseItem = new PurchaseItem();
+        this.purchaseWeapon = new PurchaseWeapon();
     }
 
-    public int enterShop(int gold, List<Item> items, Allied units) {
+    public int enterShop(int gold, Allied unit) {
 
         boolean running = true;
+        logger.info("Welcome to the shop! You can purchase any weapon but be aware that your character is more effective with weapons suited for their class!");
+        logger.info("Any weapons here are stronger than their default counterparts.");
+
+        Weapon steelSword = new Weapon("Steel Sword");
+        Weapon steelBow = new Weapon("Steel Bow");
+        Weapon thunderMagic = new Weapon("Thunder Magic");
+        Item potion = new Item("Potion");
 
         while (running) {
             ui.displayMenu(gold);
@@ -28,16 +38,16 @@ public class ShopFacade {
 
             switch (option) {
                 case 1:
-                    gold = purchaseItem.buy(gold, items.get(0), units);
+                    gold = purchaseWeapon.buy(gold, steelBow, unit);
                     break;
                 case 2:
-                    gold = purchaseItem.buy(gold, items.get(1), units);
+                    gold = purchaseWeapon.buy(gold, steelSword, unit);
                     break;
                 case 3:
-                    gold = purchaseItem.buy(gold, items.get(2), units);
+                    gold = purchaseWeapon.buy(gold, thunderMagic, unit);
                     break;
                 case 4:
-                    gold = purchaseItem.buy(gold, items.get(3), units);
+                    gold = purchaseItem.buy(gold, potion, unit);
                     break;
                 case 5:
                     running = false;

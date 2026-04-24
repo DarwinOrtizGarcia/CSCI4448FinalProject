@@ -1,5 +1,6 @@
 package game.units;
 
+import game.Map;
 import game.Strategy.AttackStrategy;
 import game.Strategy.PhysicalAttackStrategy;
 
@@ -12,7 +13,7 @@ public class Enemy extends Character {
     private static final int DEFAULT_INITIAL_RANGE = 1;
     private static final int DEFAULT_INITIAL_MOVEMENT = 3;
     private static final int[] DEFAULT_INITIAL_POSITION = new int[] {0, 0};
-    private static final AttackStrategy strategy = new PhysicalAttackStrategy();
+    private static AttackStrategy strategy = new PhysicalAttackStrategy();
     private int range;
     public Enemy(String name) {
         this(name, DEFAULT_INITIAL_HEALTH, DEFAULT_INITIAL_STRENGTH, DEFAULT_INITIAL_MAGIC, DEFAULT_INITIAL_DEFENSE, DEFAULT_INITIAL_RESISTANCE, DEFAULT_INITIAL_RANGE, DEFAULT_INITIAL_MOVEMENT, DEFAULT_INITIAL_POSITION, strategy);
@@ -31,5 +32,23 @@ public class Enemy extends Character {
     public void setRange(int range)
     {
         this.range = range;
+    }
+    public AttackStrategy getStrategy() {
+        return strategy;
+    }
+    public void setStrategy(AttackStrategy strategy) {
+        Enemy.strategy = strategy;
+    }
+
+    public void takeTurn(Map map) {
+        Character AlliedCharacter = map.getMainCharacter();
+        int[] AlliedLocation = AlliedCharacter.getPosition();
+        int[] CharacterLocation = this.getPosition();
+        if(isInRange(CharacterLocation, AlliedLocation, this.range))
+        {
+            this.attack(AlliedCharacter);
+        }
+
+
     }
 }

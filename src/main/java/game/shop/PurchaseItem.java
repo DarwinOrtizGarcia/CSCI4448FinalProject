@@ -24,14 +24,9 @@ public class PurchaseItem {
         gold -= item.getCost();
         logger.info("Purchased " + item.getItemName());
 
-        if (item.isWeapon()) {
-            unit.setUnitWeapon((Weapon) item);
 
-            logger.info(unit.getName() + " equipped " + item.getItemName());
-        }
-        else{
-            unit.setUnitItem(item);
-        }
+        unit.setUnitItem(item);
+
 
         return gold;
     }

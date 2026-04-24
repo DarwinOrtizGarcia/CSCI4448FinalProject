@@ -31,6 +31,9 @@ public class Character {
     public Character(Character character) {
     }
 
+    public Character(String name, int initialHealth, int initialStrength, int initialMagic, int initialDefense, int initialResistance, int initialMovement, int[] position, AttackStrategy strategy) {
+    }
+
     public String getName() {
         return name;
     }
@@ -43,41 +46,35 @@ public class Character {
     public int[] getPosition(){
         return this.position;
     }
-    public Double getHealth() {
+    public int getHealth() {
         return health;
     }
-    public void setHealth(Double health) {
+    public void setHealth(int health) {
         this.health = health;
     }
-    public Double getStrength() {
+    public int getStrength() {
         return strength;
     }
-    public void setStrength(Double strength) {
+    public void setStrength(int strength) {
         this.strength = strength;
     }
-    public Double getMagic() {
+    public int getMagic() {
         return magic;
     }
-    public void setMagic(Double magic) {
+    public void setMagic(int magic) {
         this.magic = magic;
     }
-    public Double getDefense() {
+    public int getDefense() {
         return defense;
     }
-    public void setDefense(Double defense) {
+    public void setDefense(int defense) {
         this.defense = defense;
     }
-    public Double getResistance() {
+    public int getResistance() {
         return resistance;
     }
-    public void setResistance(Double resistance) {
+    public void setResistance(int resistance) {
         this.resistance = resistance;
-    }
-    public AttackStrategy getStrategy() {
-        return strategy;
-    }
-    public void setStrategy(AttackStrategy strategy) {
-        this.strategy = strategy;
     }
     public int getMovement() {
         return movement;
@@ -90,6 +87,7 @@ public class Character {
         int rows = getPosition()[0];
         int columns = getPosition()[1];
         List<int[]> possibleCoordinates = new ArrayList<int[]>();
+        int movement = this.movement;
         for(int possibleXMovement = -movement; possibleXMovement < movement; possibleXMovement++)
         {
             for(int possibleYMovement = -movement; possibleYMovement < movement; possibleYMovement++)
@@ -128,5 +126,17 @@ public class Character {
             return false;
         }
         else return !gamemap.isPositionOccupiedByAlly(row, column);
+    }
+    boolean isInRange(int[] CharacterLocation, int[] targetLocation, int Range)
+    {
+        int CharacterRow =  CharacterLocation[0];
+        int CharacterColumn =  CharacterLocation[1];
+        int targetRow = targetLocation[0];
+        int targetColumn = targetLocation[1];
+        int distance = Math.abs(CharacterRow - targetRow) + Math.abs(CharacterColumn - targetColumn);
+        return distance <= Range;
+    }
+    public void attack(Character target) {
+        int damage = this.getStrength();
     }
 }
