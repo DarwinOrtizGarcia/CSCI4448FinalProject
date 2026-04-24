@@ -26,7 +26,7 @@ public class Allied extends Character {
     {
         super(name, initialHealth, initialStrength, initialMagic, initialDefense, initialResistance, initialMovement, initialPosition, strategy);
         this.equippedWeapon = initialequippedWeapon;
-        this.strategy = null;
+        Allied.strategy = null;
     }
     public String getEquippedWeapon() {
         return equippedWeapon;

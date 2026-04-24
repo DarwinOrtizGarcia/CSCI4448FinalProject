@@ -130,5 +130,4 @@ public class Character {
         }
         else return !gamemap.isPositionOccupiedByAlly(row, column);
     }
-
 }
