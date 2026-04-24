@@ -45,6 +45,12 @@ public class Map {
         }
         return false;
     }
+    public Allied getMainCharacter(){
+        return allyUnits.get(0);
+    }
+    public List<Enemy> getEnemies(){
+        return enemyUnits;
+    }
     public boolean isPositionOccupiedByEnemy(int row, int column) {
         for(Enemy enemy : enemyUnits) {
             int[] pos = enemy.getPosition();
@@ -78,6 +84,10 @@ public class Map {
 
         public Builder addEnemy(Enemy enemy) {
             enemyUnits.add(enemy);
+            return this;
+        }
+        public Builder addMultipleEnemies(List<Enemy> enemies){
+            enemyUnits.addAll(enemies);
             return this;
         }
 

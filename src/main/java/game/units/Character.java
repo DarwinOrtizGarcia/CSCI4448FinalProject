@@ -8,16 +8,16 @@ import game.Strategy.AttackStrategy;
 
 public class Character {
     private String name;
-    private Double health;
-    private Double strength;
-    private Double magic;
-    private Double defense;
-    private Double resistance;
+    private int health;
+    private int strength;
+    private int magic;
+    private int defense;
+    private int resistance;
     private int[] position = new int[2];
     private int movement;
-    private AttackStrategy strategy;
 
-    public Character(String name, Double health, Double strength, Double magic, Double defense, Double resistance, int movement, int[] position, AttackStrategy strategy) {
+
+    public Character(String name, int health, int strength, int magic, int defense, int resistance, int movement, int[] position) {
         this.name = name;
         this.health = health;
         this.strength = strength;
@@ -26,7 +26,6 @@ public class Character {
         this.resistance = resistance;
         this.movement = movement;
         this.position = position;
-        this.strategy = strategy;
     }
 
     public Character(Character character) {
