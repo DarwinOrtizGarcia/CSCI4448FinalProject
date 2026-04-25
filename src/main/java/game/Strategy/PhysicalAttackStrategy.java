@@ -4,8 +4,9 @@ import game.units.Character;
 
 public class PhysicalAttackStrategy implements AttackStrategy{
     @Override
-    public double attackDamage(Character attacker, Character target, Weapon weapon) {
-        return attacker.getStrength() + weapon.getMight() - target.getDefense();
+    public int attackDamage(Character attacker, Character target)
+    {
+        return attacker.getMagic() - target.getResistance();
     }
 
 }

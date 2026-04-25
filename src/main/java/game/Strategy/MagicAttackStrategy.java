@@ -4,8 +4,8 @@ import game.units.Character;
 
 public class MagicAttackStrategy implements AttackStrategy{
     @Override
-    public double attackDamage(Character attacker, Character target, Weapon weapon)
+    public int attackDamage(Character attacker, Character target)
     {
-        return attacker.getMagic() + weapon.getMight() - target.getResistance();
+        return attacker.getMagic() - target.getResistance();
     }
 }

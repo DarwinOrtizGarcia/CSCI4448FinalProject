@@ -4,8 +4,13 @@ import game.Map;
 import game.Strategy.AttackStrategy;
 import game.Strategy.PhysicalAttackStrategy;
 import game.Weapon;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.Arrays;
 
 public class Enemy extends Character {
+    private static final Logger logger = LoggerFactory.getLogger(Map.class);
     private static final int DEFAULT_INITIAL_HEALTH = 10;
     private static final int DEFAULT_INITIAL_STRENGTH = 4;
     private static final int DEFAULT_INITIAL_MAGIC = 4;
@@ -99,14 +104,15 @@ public class Enemy extends Character {
                 }
             }
         }
+        logger.info(this.getName() + " moved from " + Arrays.toString(this.getPosition()) + " to [" +optimalRow+","+ optimalColumn+"].");
         this.setPosition(new int[] {optimalRow, optimalColumn});
     }
     @Override
     public void attack(Character target) {
         //To-DO weapon based on character
-        //int damage = strategy.attackDamage(this,target, Weapon);
-        //damage = Math.max(damage, 0);
-        int damage = 1;
+        int damage = strategy.attackDamage(this,target);
+        damage = Math.max(damage, 0);
+        logger.info(this.getName() + " attacked " + target.getName() + " for " + damage+" damage. " + target.getName() + " remaining HP:" +(target.getHealth()-damage));
         target.setHealth(target.getHealth() - damage);
     }
 }

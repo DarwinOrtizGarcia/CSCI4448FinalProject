@@ -1,6 +1,5 @@
 package game.units;
 
-import game.Map;
 import game.Strategy.MagicAttackStrategy;
 import game.Strategy.PhysicalAttackStrategy;
 
@@ -13,7 +12,7 @@ public class EnemyUnitFactory {
     MagicAttackStrategy magicAttackStrategy = new MagicAttackStrategy();
     PhysicalAttackStrategy physicalAttackStrategy = new PhysicalAttackStrategy();
 
-    public Enemy createArmored(int[] position) {return new Enemy("Armored", 12, 5, 2, 3, 1, 1, 2, position, physicalAttackStrategy);}
+    public Enemy createArmorKnight(int[] position) {return new Enemy("Armor Knight", 12, 5, 2, 3, 1, 1, 2, position, physicalAttackStrategy);}
 
     public Enemy createWarrior (int[] position) {return new Enemy("Warrior", 10, 4, 2, 2, 2, 1, 3, position, physicalAttackStrategy);}
 
@@ -28,7 +27,7 @@ public class EnemyUnitFactory {
         for (int i = 0; i < numEnemies; i++) {
             int randomZeroToThree = rand.nextInt(4);
             switch(randomZeroToThree) {
-                case 0: enemies.add(createArmored(null)); break;
+                case 0: enemies.add(createArmorKnight(null)); break;
                 case 1: enemies.add(createWarrior(null)); break;
                 case 2: enemies.add(createSniper(null)); break;
                 case 3: enemies.add(createMage(null)); break;

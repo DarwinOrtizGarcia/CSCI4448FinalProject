@@ -52,6 +52,13 @@ public class InitialUI {
         }
         return scanner.nextInt();
     }
+    private String getUserStringChoice() {
+        while (!scanner.hasNextLine()) {
+            logger.info("Enter a name.");
+            scanner.next();
+        }
+        return scanner.nextLine();
+    }
 
     private void startNewGame() {
         logger.info("--- New Game ---");
@@ -99,7 +106,9 @@ public class InitialUI {
     private Allied createCharacter() {
         AlliedUnitFactory alliedUnitFactory = new AlliedUnitFactory();
         logger.info("Name your character: ");
-        String name = scanner.nextLine();
+        scanner.nextLine();
+        String name = getUserStringChoice();
+
         logger.info("Choose your class: ");
         logger.info("1. Fighter: Well rounded melee unit.");
         logger.info("2. Tank: Slower movement, but tougher against physical attacks");

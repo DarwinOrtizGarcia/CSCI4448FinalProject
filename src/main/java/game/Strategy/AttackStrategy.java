@@ -3,5 +3,5 @@ import game.units.Character;
 import game.Weapon;
 
 public interface AttackStrategy {
-    double attackDamage(Character attacker, Character target, Weapon weapon);
+    int attackDamage(Character attacker, Character target);
 }
