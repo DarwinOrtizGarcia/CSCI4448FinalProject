@@ -31,9 +31,6 @@ public class Character {
     public Character(Character character) {
     }
 
-    public Character(String name, int initialHealth, int initialStrength, int initialMagic, int initialDefense, int initialResistance, int initialMovement, int[] position, AttackStrategy strategy) {
-    }
-
     public String getName() {
         return name;
     }
@@ -137,6 +134,9 @@ public class Character {
         return distance <= Range;
     }
     public void attack(Character target) {
+
         int damage = this.getStrength();
+        int newHealth = Math.max(target.getHealth() - damage, 0);
+        target.setHealth(newHealth);
     }
 }

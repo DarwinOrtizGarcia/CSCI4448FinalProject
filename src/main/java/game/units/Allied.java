@@ -41,13 +41,16 @@ public class Allied extends Character {
     }
     @Override
     public void attack(Character target) {
+        int damage;
         if(this.getEquippedWeapon().getWeaponName().contains("Magic"))
         {
-            int damage = this.getMagic() + this.getEquippedWeapon().getMight() - target.getMagic();
+             damage = this.getMagic() + this.getEquippedWeapon().getMight() - target.getResistance();
         }
         else
         {
-            int damage
+             damage = this.getStrength() + this.getEquippedWeapon().getMight() - target.getDefense();
         }
+        damage = Math.max(damage, 0);
+        target.setHealth(target.getHealth() - damage);
     }
 }
