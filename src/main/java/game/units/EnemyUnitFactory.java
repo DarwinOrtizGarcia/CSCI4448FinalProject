@@ -1,20 +1,42 @@
 package game.units;
 
+import game.Map;
+import game.Strategy.MagicAttackStrategy;
+import game.Strategy.PhysicalAttackStrategy;
+
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class EnemyUnitFactory {
-    public Enemy createArmor(String name) {return new Enemy(name);}
+    Random rand = new Random();
+    MagicAttackStrategy magicAttackStrategy = new MagicAttackStrategy();
+    PhysicalAttackStrategy physicalAttackStrategy = new PhysicalAttackStrategy();
 
-    public Enemy createWarrior (String name) {return new Enemy(name);}
+    public Enemy createArmored(int[] position) {return new Enemy("Armored", 12, 5, 2, 3, 1, 1, 2, position, physicalAttackStrategy);}
 
-    public Enemy createSwordsman (String name) {return new Enemy(name);}
+    public Enemy createWarrior (int[] position) {return new Enemy("Warrior", 10, 4, 2, 2, 2, 1, 3, position, physicalAttackStrategy);}
 
-    public Enemy createSniper (String name) {return new Enemy(name);}
+    public Enemy createSniper (int[] position) {return new Enemy("Sniper", 10, 3, 2, 2, 2, 2, 3, position, physicalAttackStrategy);}
 
-    public Enemy createMage (String name) {return new Enemy(name);}
+    public Enemy createMage (int[] position) {return new Enemy("Mage", 8, 1, 3, 1, 4, 2, 3, position, magicAttackStrategy);}
 
     public Enemy createEnemy (String name, int[] position) {return new Enemy(name, position);}
 
-    //Please create this method, just pick types at random and return a list of them, i think it could be anywhere from 1-5
-    public List<Enemy> createRandomEnemies (int numEnemies) {}
+    public List<Enemy> createRandomEnemies (int numEnemies) {
+        List<Enemy> enemies = new ArrayList<>();
+        for (int i = 0; i < numEnemies; i++) {
+            int randomZeroToThree = rand.nextInt(4);
+            switch(randomZeroToThree) {
+                case 0: enemies.add(createArmored(null)); break;
+                case 1: enemies.add(createWarrior(null)); break;
+                case 2: enemies.add(createSniper(null)); break;
+                case 3: enemies.add(createMage(null)); break;
+            }
+        }
+        return enemies;
+
+
+
+    }
 }

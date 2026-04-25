@@ -104,8 +104,9 @@ public class Enemy extends Character {
     @Override
     public void attack(Character target) {
         //To-DO weapon based on character
-        int damage = strategy.attackDamage(this,target, Weapon);
-        damage = Math.max(damage, 0);
+        //int damage = strategy.attackDamage(this,target, Weapon);
+        //damage = Math.max(damage, 0);
+        int damage = 1;
         target.setHealth(target.getHealth() - damage);
     }
 }

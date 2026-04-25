@@ -25,18 +25,13 @@ public class ShopTest {
         ShopFacade shopFacade = new ShopFacade(testUI);
         Allied joe = alliedUnitFactory.createAlly("joe");
 
-        List<Item> items = new ArrayList<>();
-        items.add(new Item("Steel Bow"));
-        items.add(new Item("Steel Sword"));
-        items.add(new Item("Thunder Magic"));
-        items.add(new Item("Potion"));
-
         int startingGold = 1000;
 
-        int finalGold = shopFacade.enterShop(startingGold, items, joe);
+        int finalGold = shopFacade.enterShop(startingGold, joe);
 
         //1000 - 500
-        int expectedGold = startingGold - items.get(3).getCost();
+        int potionCost = 500;
+        int expectedGold = startingGold - potionCost;
 
         assertEquals(expectedGold, finalGold);
 
@@ -59,7 +54,7 @@ public class ShopTest {
 
         int startingGold = 400;
 
-        int finalGold = shopFacade.enterShop(startingGold, items, joe);
+        int finalGold = shopFacade.enterShop(startingGold, joe);
 
         //400 - 500 will reject the transaction and keep original gold
 

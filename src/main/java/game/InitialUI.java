@@ -89,7 +89,7 @@ public class InitialUI {
         Map map = Map.getNewBuilder()
                 .setDimensions(numberOfRows, numberOfColumns)
                 .addAlly(mainCharacter)
-                .addMultipleEnemies(enemies)
+                .addMultipleEnemiesRandomPosition(enemies)
                 .build();
 
         EmberSymbol game =  new EmberSymbol(map);
@@ -107,22 +107,16 @@ public class InitialUI {
         logger.info("4. Mage: Very squishy, but deals damage that is extra effective against armored enemies at range.");
         int choice = getUserChoice();
 
-        switch (choice) {
-            case 1:
-                return alliedUnitFactory.createFighterAlly(name);
-                break;
-            case 2:
-                return alliedUnitFactory.createToughAlly(name);
-                break;
-            case 3:
-                return alliedUnitFactory.createArcherAlly(name);
-                break;
-            case 4:
-                return alliedUnitFactory.createMageAlly(name);
-                break;
-            default:
-                logger.info("Invalid choice. Try again.");
-        }
+        return switch (choice) {
+            case 1 -> alliedUnitFactory.createFighterAlly(name);
+            case 2 -> alliedUnitFactory.createToughAlly(name);
+            case 3 -> alliedUnitFactory.createArcherAlly(name);
+            case 4 -> alliedUnitFactory.createMageAlly(name);
+            default -> {
+                logger.info("Invalid choice. Defaulting to fighter.");
+                yield alliedUnitFactory.createFighterAlly(name);
+            }
+        };
 
     }
 
@@ -136,22 +130,16 @@ public class InitialUI {
         logger.info("4. Pascal (Mage): Very squishy, but she deals damage that is extra effective against armored enemies at range.");
         int choice = getUserChoice();
 
-        switch (choice) {
-            case 1:
-                return alliedUnitFactory.createFighterAlly("Alvin");
-                break;
-            case 2:
-                return alliedUnitFactory.createToughAlly("Kisara");
-                break;
-            case 3:
-                return alliedUnitFactory.createArcherAlly("Raven");
-                break;
-            case 4:
-                return alliedUnitFactory.createMageAlly("Pascal");
-                break;
-            default:
-                logger.info("Invalid choice. Try again.");
-        }
+        return switch (choice) {
+            case 1 -> alliedUnitFactory.createFighterAlly("Alvin");
+            case 2 -> alliedUnitFactory.createToughAlly("Kisara");
+            case 3 -> alliedUnitFactory.createArcherAlly("Raven");
+            case 4 -> alliedUnitFactory.createMageAlly("Pascal");
+            default -> {
+                logger.info("Invalid choice. Defaulting to Fighter.");
+                yield alliedUnitFactory.createFighterAlly("Alvin");
+            }
+        };
     }
 
     private int[] chooseMapSize() {

@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 public class Map {
     private static final Logger logger = LoggerFactory.getLogger(Map.class);
@@ -67,6 +68,7 @@ public class Map {
     public static class Builder {
         private int numRows = 8;
         private int numCols = 12;
+        Random rand = new Random();
 
         private List<Enemy> enemyUnits = new ArrayList<>();
         private List<Allied> allyUnits = new ArrayList<>();
@@ -87,6 +89,17 @@ public class Map {
             return this;
         }
         public Builder addMultipleEnemies(List<Enemy> enemies){
+            enemyUnits.addAll(enemies);
+            return this;
+        }
+        public Builder addMultipleEnemiesRandomPosition(List<Enemy> enemies){
+
+            for (Enemy enemy:enemies){
+                int randomRow = rand.nextInt(numRows-1)+1;
+                int randomCol = rand.nextInt(numCols-1);
+                int[] randomPosition = new int[]{randomRow,randomCol};
+                enemy.setPosition(randomPosition);
+            }
             enemyUnits.addAll(enemies);
             return this;
         }

@@ -22,7 +22,7 @@ public class PurchaseWeapon {
         }
 
         gold -= weapon.getCost();
-        logger.info("Purchased " + weapon.getWeapon());
+        logger.info("Purchased " + weapon.getWeaponName());
 
 
         unit.setUnitWeapon(weapon);

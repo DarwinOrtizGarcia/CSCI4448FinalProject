@@ -1,4 +1,4 @@
-package game.units;
+import game.units.*;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -12,22 +12,22 @@ public class CharacterTest {
     @Test
     public void testAlliedDefaultStats() {
         Allied ally = new Allied("Hero");
-        assertEquals(50.0, ally.getHealth());
-        assertEquals(2.0, ally.getMovement());
+        assertEquals(10, ally.getHealth());
+        assertEquals(4, ally.getMovement());
         assertEquals("", ally.getEquippedWeapon());
     }
     @Test
     public void testEnemyFromFactory() {
         EnemyUnitFactory factory = new EnemyUnitFactory();
-        Enemy mage = factory.createMage("Merlin");
-        assertEquals(10.0, mage.getHealth());
-        assertEquals(1.0, mage.getRange());
+        Enemy mage = factory.createMage(null);
+        assertEquals(8, mage.getHealth());
+        assertEquals(1, mage.getRange());
      }
      @Test
     public void testSetHealthUpdates() {
         Enemy goblin = new Enemy("Goblin");
-        goblin.setHealth(5.0);
-        assertEquals(5.0, goblin.getHealth());
+        goblin.setHealth(5);
+        assertEquals(5, goblin.getHealth());
      }
     @Test
     public void testAlliedFactoryCreatesCorrectName() {
