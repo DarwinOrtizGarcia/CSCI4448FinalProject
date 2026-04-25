@@ -139,7 +139,7 @@ public class Map {
 
                 for (Allied ally : allyUnits) {
                     if (ally.getPosition()[0] == i && ally.getPosition()[1] == j) {
-                        toPrint = Character.toUpperCase(ally.getName().charAt(0));
+                        toPrint = '★';
                         break;
                     }
                 }
