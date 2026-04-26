@@ -1,4 +1,5 @@
 
+import game.Item;
 import game.units.*;
 import game.units.Character;
 import org.junit.jupiter.api.Test;
@@ -30,6 +31,17 @@ public class CharacterTest {
         Enemy goblin = new Enemy("Goblin");
         goblin.setHealth(5);
         assertEquals(5, goblin.getHealth());
+     }
+
+     @Test
+     public void testhasPotionandUsePotion() {
+        Allied ally = new Allied("Hero");
+        ally.setUnitItem(new Item("Potion"));
+        assertTrue(ally.hasPotion());
+        int startingHealth = ally.getHealth();
+        ally.usePotion();
+        assertEquals(20, ally.getHealth());
+        assertFalse(ally.hasPotion());
      }
     @Test
     public void testAlliedFactoryCreatesCorrectName() {
