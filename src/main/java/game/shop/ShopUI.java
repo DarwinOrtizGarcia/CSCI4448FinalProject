@@ -21,7 +21,7 @@ public class ShopUI {
         logger.info("Gold: " + gold);
         logger.info("1. Steel Bow (400). Good for Archers.");
         logger.info("2. Steel Sword (400). Good for Fighters and Tanks.");
-        logger.info("3. Thunder Magic (400). Good for Mages.");
+        logger.info("3. Thunder Magic (500). Good for Mages.");
         logger.info("4. Ruin Magic (800). Powerful dark magic for Mages.");
         logger.info("5. Potion (500). Good for not dying, heals 10 hp.");
         logger.info("6. Quit");
