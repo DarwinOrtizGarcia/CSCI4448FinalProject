@@ -1,5 +1,4 @@
 import game.Strategy.MagicAttackStrategy;
-import game.Strategy.PhysicalAttackStrategy;
 import game.Weapon;
 import game.units.Allied;
 import game.units.AlliedUnitFactory;
@@ -8,7 +7,6 @@ import game.units.EnemyUnitFactory;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -26,11 +24,14 @@ public class AlliedEnemyTest {
         int initialEnemyHealth = yuri.getHealth();
         joe.attack(yuri);
         assert (yuri.getHealth()<initialEnemyHealth);
+
+        int beforeHitPlayerHealth = joe.getHealth();
+        yuri.attack(joe);
+        assert (joe.getHealth()<beforeHitPlayerHealth);
     }
 
     @Test
     public void testSetEnemyRange(){
-        Allied joe = alliedUnitFactory.createAlly("joe");
         Enemy ron = enemyUnitFactory.createEnemy("ron", new int[]{1, 1});
         ron.setRange(4);
         assert ron.getRange()==4;
@@ -63,6 +64,10 @@ public class AlliedEnemyTest {
         assertEquals(2, enemyList.size());
 
     }
+
+
+
+
 
 
 }
