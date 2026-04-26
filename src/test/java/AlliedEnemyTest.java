@@ -41,9 +41,10 @@ public class AlliedEnemyTest {
 
     @Test
     public void testFactories(){
-        Allied joe = alliedUnitFactory.createArcherAlly("joe");
-        Allied jude = alliedUnitFactory.createFighterAlly("joe");
-        Allied milla = alliedUnitFactory.createToughAlly("joe");
+        Allied joe = alliedUnitFactory.createArcherAlly("Joe");
+        Allied jude = alliedUnitFactory.createFighterAlly("Jude");
+        Allied milla = alliedUnitFactory.createToughAlly("Milla");
+        Allied sophie  = alliedUnitFactory.createMageAlly("Sophie");
 
         Enemy rah = enemyUnitFactory.createArmorKnight(new int[]{1, 1});
         Enemy yuu = enemyUnitFactory.createSniper(new int[]{2, 1});
@@ -52,6 +53,7 @@ public class AlliedEnemyTest {
         assertEquals(10, joe.getHealth());
         assertEquals(3, jude.getStrength());
         assertEquals(3, milla.getStrength());
+        assertEquals(4, sophie.getMagic());
 
         assertEquals(12, rah.getHealth());
         assertEquals(4, doy.getStrength());
@@ -59,8 +61,6 @@ public class AlliedEnemyTest {
 
         List<Enemy> enemyList = enemyUnitFactory.createRandomEnemies(2);
         assertEquals(2, enemyList.size());
-
-
 
     }
 
