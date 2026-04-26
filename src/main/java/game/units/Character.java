@@ -28,9 +28,6 @@ public class Character {
         this.position = position;
     }
 
-    public Character(Character character) {
-    }
-
     public String getName() {
         return name;
     }
