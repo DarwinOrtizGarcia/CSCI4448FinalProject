@@ -2,7 +2,6 @@ package game;
 
 import game.units.Allied;
 import game.units.Enemy;
-import game.units.Character;
 import org.slf4j.Logger;
 
 import java.util.ArrayList;
@@ -58,7 +57,7 @@ public class EmberSymbol {
                 logger.info("2) Fight");}
             if (canDrinkPotion) {
                 logger.info("3) Drink Potion");}
-            logger.info("0) Quit");
+            logger.info("0) End Turn.");
 
             String choice = scanner.nextLine().trim();
                 switch (choice) {
@@ -137,7 +136,7 @@ public class EmberSymbol {
             logger.info("A: Left ");
             logger.info("S: Down ");
             logger.info("D: Right ");
-            logger.info("Q: Quit ");
+            logger.info("Q: Exit Movement.");
             String input = scanner.nextLine().trim().toLowerCase();
             if (input.equals("q")) {
                 return remainingMovement;
