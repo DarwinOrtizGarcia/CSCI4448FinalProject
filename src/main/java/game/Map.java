@@ -95,15 +95,32 @@ public class Map {
         public Builder addMultipleEnemiesRandomPosition(List<Enemy> enemies){
 
             for (Enemy enemy:enemies){
-                int randomRow = rand.nextInt(numRows-1)+1;
-                int randomCol = rand.nextInt(numCols-1);
+                int randomRow, randomCol;
+                do {
+                    randomRow = rand.nextInt(numRows - 1) + 1;
+                    randomCol = rand.nextInt(numCols - 1);
+                } while (isOccupied(randomRow, randomCol));
                 int[] randomPosition = new int[]{randomRow,randomCol};
                 enemy.setPosition(randomPosition);
             }
             enemyUnits.addAll(enemies);
             return this;
         }
-
+        private boolean isOccupied(int row, int column) {
+            for (Allied ally: allyUnits) {
+                int[] pos = ally.getPosition();
+                if(pos[0] == row && pos[1] == column) {
+                    return true;
+                }
+            }
+            for (Enemy enemy : enemyUnits) {
+                int[] pos = enemy.getPosition();
+                if(pos[0] == row && pos[1] == column) {
+                    return true;
+                }
+            }
+            return false;
+        }
         public Map build() {
             return new Map(this);
         }
@@ -146,7 +163,7 @@ public class Map {
 
                 if (toPrint == ' ') {
                     for (Enemy enemy : enemyUnits) {
-                        if (enemy.getPosition()[0] == i && enemy.getPosition()[1] == j) {
+                        if (enemy.getPosition()[0] == i && enemy.getPosition()[1] == j && enemy.getHealth() > 0) {
                             toPrint = Character.toUpperCase(enemy.getName().charAt(0));
                             break;
                         }

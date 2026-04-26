@@ -179,7 +179,7 @@ public class InitialUI {
         logger.info("3. Lunatic (2 extra enemies)");
         logger.info("Enter choice: ");
 
-        int choice = scanner.nextInt();
+        int choice = getUserChoice();
 
 
         return switch (choice) {

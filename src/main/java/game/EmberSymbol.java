@@ -75,7 +75,7 @@ public class EmberSymbol {
                 }
             }
             else if (canMove) {
-                    logger.info("Your move (W/A/S/D), remaining movement spaces: " + playerCharacter.getMovement());
+                    logger.info("Your move (W/A/S/D), remaining movement spaces: " + MovementCost);
                     logger.info("W: Up ");
                     logger.info("A: Left ");
                     logger.info("S: Down ");
