@@ -1,11 +1,13 @@
 package game.units;
-import game.Map;
 import game.Weapon;
 import game.Item;
 import game.Strategy.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 public class Allied extends Character {
+    private static final Logger logger = LoggerFactory.getLogger(Allied.class);
     private static final int DEFAULT_INITIAL_HEALTH = 10;
     private static final int DEFAULT_INITIAL_STRENGTH = 2;
     private static final int DEFAULT_INITIAL_MAGIC = 2;
@@ -52,5 +54,6 @@ public class Allied extends Character {
         }
         damage = Math.max(damage, 0);
         target.setHealth(target.getHealth() - damage);
+        logger.info(this.getName() + " attacked " + target.getName() + " for " + damage + " damage. " + target.getName() + " remaining HP: " + target.getHealth());
     }
 }

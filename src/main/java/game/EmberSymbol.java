@@ -59,7 +59,7 @@ public class EmberSymbol {
                 String choice = scanner.nextLine().trim().toLowerCase();
                 switch (choice) {
                     case "a":
-                        if(doMove(playerCharacter)) {
+                        if(doMove(playerCharacter, MovementCost)) {
                             MovementCost--;
                         }
                         break;
@@ -75,20 +75,8 @@ public class EmberSymbol {
                 }
             }
             else if (canMove) {
-                    logger.info("Your move (W/A/S/D), remaining movement spaces: " + MovementCost);
-                    logger.info("W: Up ");
-                    logger.info("A: Left ");
-                    logger.info("S: Down ");
-                    logger.info("D: Right ");
-                    String input = scanner.nextLine().trim().toLowerCase();
-                    if( input.equals("c")) {
-                        logger.info("Turn ended.");
-                        return;
-                    }
-                    boolean move = tryMove(playerCharacter, input);
-                    if (move) {
-                        MovementCost--;
-                    }
+                if (doMove(playerCharacter, MovementCost))
+                    MovementCost--;
                 }
             else if (canAttack) {
                     logger.info("A) Fight");
@@ -141,10 +129,15 @@ public class EmberSymbol {
             return false;
         }
         player.setPosition(new int[]{newRow, newCol});
+        map.displayMap();
         return true;
     }
-    private boolean doMove(Allied player) {
-        logger.info("W: Up A:Left S: Down D: Right");
+    private boolean doMove(Allied player, int remainingMovement) {
+        logger.info("Your move (W/A/S/D), remaining movement spaces: " + remainingMovement);
+        logger.info("W: Up ");
+        logger.info("A: Left ");
+        logger.info("S: Down ");
+        logger.info("D: Right ");
         String input = scanner.nextLine().trim().toLowerCase();
         return tryMove(player, input);
     }
@@ -152,7 +145,6 @@ public class EmberSymbol {
     private void doFight(Allied player, List<Enemy> targets) {
         if(targets.size() == 1) {
             player.attack(targets.get(0));
-            logger.info(player.getName() + " attacked " + targets.get(0).getName());
         }
         else {
             logger.info("Choose target:");
@@ -164,7 +156,6 @@ public class EmberSymbol {
                 int targetIndex = Integer.parseInt(scanner.nextLine().trim()) - 1;
                 if (targetIndex >= 0 && targetIndex < targets.size()) {
                     player.attack(targets.get(targetIndex));
-                    logger.info(player.getName() + " attacked " + targets.get(0).getName());
                 }
                 else {
                     logger.info("Invalid input.");
