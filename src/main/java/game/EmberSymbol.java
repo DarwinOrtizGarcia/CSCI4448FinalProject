@@ -43,28 +43,31 @@ public class EmberSymbol {
         Allied playerCharacter = map.getMainCharacter();
         int MovementCost = playerCharacter.getMovement();
         boolean hasAttackedorDrank = false;
-        while(MovementCost > 0 || !hasAttackedorDrank) {
+        while(true) {
             logger.info("Make your choice:");
             List<Enemy> targets = getEnemiesInRange(playerCharacter);
             boolean canMove = MovementCost > 0;
             boolean canAttack = !hasAttackedorDrank && !targets.isEmpty();
             boolean canDrinkPotion = !hasAttackedorDrank && playerCharacter.hasPotion();
+            if(!canMove && !canAttack && !canDrinkPotion) {
+                return;
+            }
+            if (canMove) {
+                logger.info("1) Move");}
+            if (canAttack) {
+                logger.info("2) Fight");}
+            if (canDrinkPotion) {
+                logger.info("3) Drink Potion");}
+            logger.info("0) Quit");
 
-            if (canMove && (canAttack || canDrinkPotion)) {
-                logger.info("1) Move");
-                if (canAttack) {
-                    logger.info("2) Fight");
-                }
-                if (canDrinkPotion) {
-                    logger.info("3) Drink Potion");
-                }
-                logger.info("0) Quit");
-
-                String choice = scanner.nextLine().trim();
+            String choice = scanner.nextLine().trim();
                 switch (choice) {
                     case "1":
-                        if(doMove(playerCharacter, MovementCost)) {
-                            MovementCost--;
+                        if (canMove) {
+                            MovementCost = doMove(playerCharacter, MovementCost);
+                        }
+                        else {
+                            logger.info("Invalid choice");
                         }
                         break;
                     case "2":
@@ -92,41 +95,6 @@ public class EmberSymbol {
                         logger.info("Invalid input.");
                 }
             }
-            else if (canMove) {
-                if (doMove(playerCharacter, MovementCost))
-                    MovementCost--;
-                }
-            else if (canAttack || canDrinkPotion) {
-                    logger.info("Make your choice:");
-                    if (canAttack)
-                    {
-                        logger.info("1) Fight");
-                    }
-                    if (canDrinkPotion) {
-                        logger.info("2) Drink Potion");
-                    }
-                    logger.info("0) Quit");
-                    String possibleChoice = scanner.nextLine().trim();
-                    switch (possibleChoice) {
-                        case "1":
-                            doFight(playerCharacter, targets);
-                            hasAttackedorDrank = true;
-                            break;
-                        case "2":
-                            if (canDrinkPotion) {
-                                playerCharacter.usePotion();
-                                hasAttackedorDrank = true;
-                            }
-                            break;
-                        case "0":
-                            logger.info("Turn ended.");
-                            return;
-                    }
-                }
-            else {
-                    return;
-            }
-        }
     }
 
     private boolean tryMove(Allied player, String input) {
@@ -162,19 +130,24 @@ public class EmberSymbol {
         map.displayMap();
         return true;
     }
-    private boolean doMove(Allied player, int remainingMovement) {
-        logger.info("Your move (W/A/S/D), remaining movement spaces: " + remainingMovement);
-        logger.info("W: Up ");
-        logger.info("A: Left ");
-        logger.info("S: Down ");
-        logger.info("D: Right ");
-        logger.info("Q: Quit ");
-        String input = scanner.nextLine().trim().toLowerCase();
-        if  (input.equals("q")) {
-            remainingMovement = 0;
-            return true;
+    private int doMove(Allied player, int remainingMovement) {
+        while (remainingMovement > 0) {
+            logger.info("Your move (W/A/S/D), remaining movement spaces: " + remainingMovement);
+            logger.info("W: Up ");
+            logger.info("A: Left ");
+            logger.info("S: Down ");
+            logger.info("D: Right ");
+            logger.info("Q: Quit ");
+            String input = scanner.nextLine().trim().toLowerCase();
+            if (input.equals("q")) {
+                return remainingMovement;
+            }
+            if (tryMove(player, input)) {
+                remainingMovement--;
+            }
         }
-        return tryMove(player, input);
+        logger.info("No movement remaining");
+        return remainingMovement;
     }
 
     private void doFight(Allied player, List<Enemy> targets) {
