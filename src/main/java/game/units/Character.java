@@ -124,7 +124,7 @@ public class Character {
         }
         else return !gamemap.isPositionOccupiedByAlly(row, column);
     }
-    boolean isInRange(int[] CharacterLocation, int[] targetLocation, int Range)
+    public boolean isInRange(int[] CharacterLocation, int[] targetLocation, int Range)
     {
         int CharacterRow =  CharacterLocation[0];
         int CharacterColumn =  CharacterLocation[1];

@@ -6,7 +6,7 @@ public class PhysicalAttackStrategy implements AttackStrategy{
     @Override
     public int attackDamage(Character attacker, Character target)
     {
-        return attacker.getMagic() - target.getResistance();
+        return attacker.getStrength() - target.getDefense();
     }
 
 }
