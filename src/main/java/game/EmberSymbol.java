@@ -145,7 +145,6 @@ public class EmberSymbol {
     private void doFight(Allied player, List<Enemy> targets) {
         if(targets.size() == 1) {
             player.attack(targets.get(0));
-            logger.info(player.getName() + " attacked " + targets.get(0).getName());
         }
         else {
             logger.info("Choose target:");
@@ -157,7 +156,6 @@ public class EmberSymbol {
                 int targetIndex = Integer.parseInt(scanner.nextLine().trim()) - 1;
                 if (targetIndex >= 0 && targetIndex < targets.size()) {
                     player.attack(targets.get(targetIndex));
-                    logger.info(player.getName() + " attacked " + targets.get(targetIndex).getName());
                 }
                 else {
                     logger.info("Invalid input.");
