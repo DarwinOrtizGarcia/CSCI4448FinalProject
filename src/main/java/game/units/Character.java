@@ -28,14 +28,8 @@ public class Character {
         this.position = position;
     }
 
-    public Character(Character character) {
-    }
-
     public String getName() {
         return name;
-    }
-    public void setName(String name) {
-        this.name = name;
     }
     public void setPosition(int[] newPosition){
         this.position = newPosition;

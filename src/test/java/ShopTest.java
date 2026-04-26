@@ -1,4 +1,6 @@
 import game.Item;
+import game.Weapon;
+import game.shop.PurchaseWeapon;
 import game.shop.ShopUI;
 import game.units.Allied;
 import game.units.AlliedUnitFactory;
@@ -46,11 +48,6 @@ public class ShopTest {
         ShopFacade shopFacade = new ShopFacade(testUI);
         Allied joe = alliedUnitFactory.createAlly("joe");
 
-        List<Item> items = new ArrayList<>();
-        items.add(new Item("Steel Bow"));
-        items.add(new Item("Steel Sword"));
-        items.add(new Item("Thunder Magic"));
-        items.add(new Item("Potion"));
 
         int startingGold = 400;
 
@@ -60,6 +57,17 @@ public class ShopTest {
 
         assertEquals(startingGold, finalGold);
 
+    }
+    @Test
+    public void testBuyWeapon(){
+        PurchaseWeapon purchaseWeapon = new PurchaseWeapon();
+        Allied joe = alliedUnitFactory.createAlly("joe");
+        int startingGold = 500;
+        Weapon thunderMagic = new Weapon("Thunder Magic");
+
+        int remainingGold = purchaseWeapon.buy(startingGold, thunderMagic, joe);
+        int expectedGold =  startingGold - thunderMagic.getCost();
+        assertEquals(expectedGold, remainingGold);
     }
 
 }

@@ -88,10 +88,6 @@ public class Map {
             enemyUnits.add(enemy);
             return this;
         }
-        public Builder addMultipleEnemies(List<Enemy> enemies){
-            enemyUnits.addAll(enemies);
-            return this;
-        }
         public Builder addMultipleEnemiesRandomPosition(List<Enemy> enemies){
 
             for (Enemy enemy:enemies){
