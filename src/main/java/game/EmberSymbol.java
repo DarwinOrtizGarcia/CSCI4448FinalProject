@@ -40,34 +40,52 @@ public class EmberSymbol {
     }
 
     private void playerTurn() {
-        //TODO: Do this however you think will work best. We want them to be able to move in multiple direction too.
-        //For example, The character has 4 movement and wants to go up 3, left 1.
         Allied playerCharacter = map.getMainCharacter();
         int MovementCost = playerCharacter.getMovement();
-        boolean hasAttacked = false;
-        while(MovementCost > 0 || !hasAttacked) {
+        boolean hasAttackedorDrank = false;
+        while(MovementCost > 0 || !hasAttackedorDrank) {
             logger.info("Make your choice:");
             List<Enemy> targets = getEnemiesInRange(playerCharacter);
             boolean canMove = MovementCost > 0;
-            boolean canAttack = !hasAttacked && !targets.isEmpty();
+            boolean canAttack = !hasAttackedorDrank && !targets.isEmpty();
+            boolean canDrinkPotion = !hasAttackedorDrank && playerCharacter.hasPotion();
 
-            if (canMove && canAttack) {
-                logger.info("A) Move");
-                logger.info("B) Fight");
-                logger.info("C) Quit");
+            if (canMove && (canAttack || canDrinkPotion)) {
+                logger.info("1) Move");
+                if (canAttack) {
+                    logger.info("2) Fight");
+                }
+                if (canDrinkPotion) {
+                    logger.info("3) Drink Potion");
+                }
+                logger.info("0) Quit");
 
-                String choice = scanner.nextLine().trim().toLowerCase();
+                String choice = scanner.nextLine().trim();
                 switch (choice) {
-                    case "a":
+                    case "1":
                         if(doMove(playerCharacter, MovementCost)) {
                             MovementCost--;
                         }
                         break;
-                    case "b":
-                        doFight(playerCharacter, targets);
-                        hasAttacked = true;
+                    case "2":
+                        if(canAttack) {
+                            doFight(playerCharacter, targets);
+                            hasAttackedorDrank = true;
+                        }
+                        else {
+                            logger.info("Invalid choice");
+                        }
                         break;
-                    case "c":
+                    case "3":
+                        if(canDrinkPotion) {
+                            playerCharacter.usePotion();
+                            hasAttackedorDrank = true;
+                        }
+                        else {
+                            logger.info("Invalid choice");
+                        }
+                        break;
+                    case "0":
                         logger.info("Turn ended.");
                         return;
                     default:
@@ -78,21 +96,33 @@ public class EmberSymbol {
                 if (doMove(playerCharacter, MovementCost))
                     MovementCost--;
                 }
-            else if (canAttack) {
-                    logger.info("A) Fight");
-                    logger.info("B) Quit");
-                    String possibleChoice = scanner.nextLine().trim().toLowerCase();
+            else if (canAttack || canDrinkPotion) {
+                    logger.info("Make your choice:");
+                    if (canAttack)
+                    {
+                        logger.info("1) Fight");
+                    }
+                    if (canDrinkPotion) {
+                        logger.info("2) Drink Potion");
+                    }
+                    logger.info("0) Quit");
+                    String possibleChoice = scanner.nextLine().trim();
                     switch (possibleChoice) {
-                        case "a":
+                        case "1":
                             doFight(playerCharacter, targets);
-                            hasAttacked = true;
+                            hasAttackedorDrank = true;
                             break;
-                        case "b":
+                        case "2":
+                            if (canDrinkPotion) {
+                                playerCharacter.usePotion();
+                                hasAttackedorDrank = true;
+                            }
+                            break;
+                        case "0":
                             logger.info("Turn ended.");
                             return;
                     }
                 }
-
             else {
                     return;
             }
@@ -138,7 +168,12 @@ public class EmberSymbol {
         logger.info("A: Left ");
         logger.info("S: Down ");
         logger.info("D: Right ");
+        logger.info("Q: Quit ");
         String input = scanner.nextLine().trim().toLowerCase();
+        if  (input.equals("q")) {
+            remainingMovement = 0;
+            return true;
+        }
         return tryMove(player, input);
     }
 

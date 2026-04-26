@@ -56,4 +56,16 @@ public class Allied extends Character {
         target.setHealth(target.getHealth() - damage);
         logger.info(this.getName() + " attacked " + target.getName() + " for " + damage + " damage. " + target.getName() + " remaining HP: " + target.getHealth());
     }
+    public boolean hasPotion() {
+        return heldItem != null;
+    }
+
+    public void usePotion() {
+        if (hasPotion()) {
+            int newHealth = this.getHealth() + heldItem.getHealing();
+            this.setHealth(newHealth);
+            logger.info(this.getName() + " used a Potion and healed " + heldItem.getHealing() + " HP. Current  HP: " + this.getHealth());
+            heldItem = null;
+        }
+    }
 }
