@@ -1,4 +1,3 @@
-import game.Item;
 import game.Weapon;
 import game.shop.PurchaseWeapon;
 import game.shop.ShopUI;
@@ -7,8 +6,7 @@ import game.units.AlliedUnitFactory;
 import game.shop.ShopFacade;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
+
 import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -19,7 +17,7 @@ public class ShopTest {
 
     @Test
     void testShop() {
-        String testInput = "4\n5\n";
+        String testInput = "5\n6\n";
         //this simulates input 4 to buy a Potion, and then 5 to quit the shop
         Scanner testScanner = new Scanner(testInput);
 
@@ -40,8 +38,8 @@ public class ShopTest {
     }
     @Test
     void testTooPoorShop() {
-        String testInput = "4\n5\n";
-        //this simulates input 4 to buy a Potion, and then 5 to quit the shop
+        String testInput = "5\n6\n";
+        //this simulates input 5 to buy a Potion, and then 6 to quit the shop
         Scanner testScanner = new Scanner(testInput);
 
         ShopUI testUI = new ShopUI(testScanner);

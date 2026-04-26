@@ -53,11 +53,11 @@ public class AlliedEnemyTest {
 
         assertEquals(12, joe.getHealth());
         assertEquals(3, jude.getStrength());
-        assertEquals(3, milla.getStrength());
+        assertEquals(4, milla.getStrength());
         assertEquals(4, sophie.getMagic());
 
-        assertEquals(12, rah.getHealth());
-        assertEquals(4, doy.getStrength());
+        assertEquals(10, rah.getHealth());
+        assertEquals(6, doy.getStrength());
         assertEquals(2, yuu.getRange());
 
         List<Enemy> enemyList = enemyUnitFactory.createRandomEnemies(2);
