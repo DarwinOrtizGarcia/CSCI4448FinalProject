@@ -17,23 +17,23 @@ public class Weapon {
         switch (weaponName) {
             case "Iron Bow" -> {
                 this.weaponName = weaponName;
-                this.might = 1;
+                this.might = 2;
                 this.range = 2;
             }
             case "Steel Bow" -> {
                 this.weaponName = weaponName;
-                this.might = 3;
+                this.might = 4;
                 this.range = 2;
                 this.cost = 400;
             }
             case "Iron Sword" -> {
                 this.weaponName = weaponName;
-                this.might = 2;
+                this.might = 3;
                 this.range = 1;
             }
             case "Steel Sword" -> {
                 this.weaponName = weaponName;
-                this.might = 4;
+                this.might = 5;
                 this.range = 1;
                 this.cost = 400;
             }
@@ -41,12 +41,19 @@ public class Weapon {
                 this.weaponName = weaponName;
                 this.might = 2;
                 this.range = 2;
+                this.cost = 300;
             }
             case "Thunder Magic" -> {
                 this.weaponName = weaponName;
                 this.might = 4;
                 this.range = 2;
-                this.cost = 400;
+                this.cost = 500;
+            }
+            case "Ruin Magic" -> {
+                this.weaponName = weaponName;
+                this.might = 5;
+                this.range = 2;
+                this.cost = 800;
             }
         }
     }

@@ -23,7 +23,7 @@ public class CharacterTest {
     public void testEnemyFromFactory() {
         EnemyUnitFactory factory = new EnemyUnitFactory();
         Enemy mage = factory.createMage(null);
-        assertEquals(8, mage.getHealth());
+        assertEquals(6, mage.getHealth());
         assertEquals(2, mage.getRange());
      }
      @Test

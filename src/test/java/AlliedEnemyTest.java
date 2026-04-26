@@ -51,7 +51,7 @@ public class AlliedEnemyTest {
         Enemy yuu = enemyUnitFactory.createSniper(new int[]{2, 1});
         Enemy doy = enemyUnitFactory.createWarrior(new int[]{3, 1});
 
-        assertEquals(10, joe.getHealth());
+        assertEquals(12, joe.getHealth());
         assertEquals(3, jude.getStrength());
         assertEquals(3, milla.getStrength());
         assertEquals(4, sophie.getMagic());

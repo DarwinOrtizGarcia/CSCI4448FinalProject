@@ -12,13 +12,13 @@ public class EnemyUnitFactory {
     MagicAttackStrategy magicAttackStrategy = new MagicAttackStrategy();
     PhysicalAttackStrategy physicalAttackStrategy = new PhysicalAttackStrategy();
 
-    public Enemy createArmorKnight(int[] position) {return new Enemy("Armor Knight", 12, 5, 2, 3, 1, 1, 2, position, physicalAttackStrategy);}
+    public Enemy createArmorKnight(int[] position) {return new Enemy("Armor Knight", 10, 6, 2, 3, 0, 1, 2, position, physicalAttackStrategy);}
 
-    public Enemy createWarrior (int[] position) {return new Enemy("Warrior", 10, 4, 2, 2, 2, 1, 3, position, physicalAttackStrategy);}
+    public Enemy createWarrior (int[] position) {return new Enemy("Warrior", 8, 6, 2, 2, 2, 1, 3, position, physicalAttackStrategy);}
 
-    public Enemy createSniper (int[] position) {return new Enemy("Sniper", 10, 3, 2, 2, 2, 2, 3, position, physicalAttackStrategy);}
+    public Enemy createSniper (int[] position) {return new Enemy("Sniper", 6, 5, 2, 2, 2, 2, 3, position, physicalAttackStrategy);}
 
-    public Enemy createMage (int[] position) {return new Enemy("Mage", 8, 1, 3, 1, 4, 2, 3, position, magicAttackStrategy);}
+    public Enemy createMage (int[] position) {return new Enemy("Mage", 6, 1, 5, 1, 5, 2, 3, position, magicAttackStrategy);}
 
     public Enemy createEnemy (String name, int[] position) {return new Enemy(name, position);}
 

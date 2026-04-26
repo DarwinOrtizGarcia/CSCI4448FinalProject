@@ -30,6 +30,7 @@ public class ShopFacade {
         Weapon steelSword = new Weapon("Steel Sword");
         Weapon steelBow = new Weapon("Steel Bow");
         Weapon thunderMagic = new Weapon("Thunder Magic");
+        Weapon ruinMagic = new Weapon("Ruin Magic");
         Item potion = new Item("Potion");
 
         while (running) {
@@ -47,9 +48,12 @@ public class ShopFacade {
                     gold = purchaseWeapon.buy(gold, thunderMagic, unit);
                     break;
                 case 4:
-                    gold = purchaseItem.buy(gold, potion, unit);
+                    gold = purchaseWeapon.buy(gold, ruinMagic, unit);
                     break;
                 case 5:
+                    gold = purchaseItem.buy(gold, potion, unit);
+                    break;
+                case 6:
                     running = false;
                     break;
                 default:

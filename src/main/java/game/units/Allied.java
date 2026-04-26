@@ -55,6 +55,12 @@ public class Allied extends Character {
         damage = Math.max(damage, 0);
         target.setHealth(target.getHealth() - damage);
         logger.info(this.getName() + " attacked " + target.getName() + " for " + damage + " damage. " + target.getName() + " remaining HP: " + target.getHealth());
+        if(target.getHealth() <= 0){
+            logger.info(target.getName() + " has been defeated.");
+            target.setPosition(new int[]{-1,-1});
+        }
+
+
     }
     public boolean hasPotion() {
         return heldItem != null;

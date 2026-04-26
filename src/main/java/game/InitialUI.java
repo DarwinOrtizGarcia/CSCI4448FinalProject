@@ -135,7 +135,7 @@ public class InitialUI {
         logger.info("Choose your character: ");
         logger.info("1. Alvin (Fighter): Well rounded melee unit, he can both deal and take solid damage.");
         logger.info("2. Kisara (Tank): Slower movement, but she is tougher against physical attacks.");
-        logger.info("3. Raven (Archer): Weaker and squishier than the melee classes, but he can attack at range.");
+        logger.info("3. Raven (Archer): Weaker and squishier than the melee classes, but he can attack at range and has extra movement.");
         logger.info("4. Pascal (Mage): Very squishy, but she deals damage that is extra effective against armored enemies at range.");
         int choice = getUserChoice();
 
@@ -183,12 +183,12 @@ public class InitialUI {
 
 
         return switch (choice) {
-            case 1 -> 1;
-            case 2 -> 2;
-            case 3 -> 3;
+            case 1 -> 0;
+            case 2 -> 1;
+            case 3 -> 2;
             default -> {
                 logger.info("Invalid choice. Defaulting to Chill.");
-                yield 1;
+                yield 0;
             }
         };
     }
